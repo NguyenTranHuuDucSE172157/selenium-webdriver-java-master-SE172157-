@@ -1,4 +1,4 @@
-package test;
+package test.BT_SWT;
 import org.testng.annotations.Test;
 import driver.driverFactory;
 

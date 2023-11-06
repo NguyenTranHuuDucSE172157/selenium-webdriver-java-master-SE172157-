@@ -1,4 +1,4 @@
-package test;
+package model.pages;
 
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
@@ -49,7 +49,8 @@ public class TC06_CheckOutPage {
     private final By PlaceOrderSelector = By.xpath("//button[@title='Place Order']");
     private final By OrderRecievedMessage = By.cssSelector(".sub-title");
     private final By orderNumberMessage = By.cssSelector("body > div:nth-child(1) > div:nth-child(2) > div:nth-child(3) > div:nth-child(1) > div:nth-child(1) > p:nth-child(3)");
-
+    private final By newAddress= By.xpath("//*[@id='billing-address-select']");
+    private final By newSAddress= By.xpath("//*[@id='shipping-address-select']");
 
     public void clickProceedToCheckout() {
         driver.findElement(proceedToCheckoutSelector).click();
@@ -174,5 +175,14 @@ public class TC06_CheckOutPage {
         WebDriverWait wait = new WebDriverWait(driver, Duration.ofSeconds(10));
         return wait.until(ExpectedConditions.visibilityOfElementLocated(orderNumberMessage)).getText();
     }
+    public void selectNewAddress(String newad) {
+        Select newDropdown = new Select(driver.findElement(newAddress));
+        newDropdown.selectByVisibleText(newad);
 
+    }
+    public void selectNewSAddress(String newsad) {
+        Select newDropdown = new Select(driver.findElement(newSAddress));
+        newDropdown.selectByVisibleText(newsad);
+
+    }
 }

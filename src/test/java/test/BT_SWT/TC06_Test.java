@@ -1,9 +1,19 @@
-package test;
+package test.BT_SWT;
 
 import driver.driverFactory;
+import model.pages.TC06_CartPage;
+import model.pages.TC06_CheckOutPage;
+import model.pages.TC06_LoginPage;
+
+import org.apache.commons.io.FileUtils;
+import org.openqa.selenium.By;
+import org.openqa.selenium.OutputType;
+import org.openqa.selenium.TakesScreenshot;
 import org.openqa.selenium.WebDriver;
 import org.testng.annotations.Test;
 
+import java.io.File;
+import java.io.IOException;
 import java.time.Duration;
 
 public class TC06_Test {
@@ -22,7 +32,7 @@ public class TC06_Test {
         loginPage.clickOnMyAccountLink();
         Thread.sleep(2000);
         //Step 3 Login in application using previously created credential
-        loginPage.login("huuduc011@example.com", "123456");
+        loginPage.login("huuduc303@example.com", "123456");
         Thread.sleep(2000);
         //Step 4 Click on MY WISHLIST link
         cartPage.clickOnMyWishlistLink();
@@ -58,17 +68,17 @@ public class TC06_Test {
         Thread.sleep(2000);
 
         //Step 12a Enter Billing Information, and click Continue
-        
-        checkoutPage.enterBillingInformation( "Huu",
+        checkoutPage.selectNewAddress("New Address");
+        checkoutPage.enterBillingInformation( "Nguyen Tran Huu",
                  "Duc", "FPT", "24",
                 "LVV", "THUDUC", "New York", "123456",
                 "United States", "1234567890", "654321");
-       
-         
         checkoutPage.selectdiffent();
         Thread.sleep(2000);
         //Step 12b Enter Shipping Information, and click Continue
-        checkoutPage.enterShippingInformation( "Huu",
+        driver.findElement(By.xpath("//*[@id='opc-shipping']/div[1]")).click();
+        checkoutPage.selectNewSAddress("New Address");
+        checkoutPage.enterShippingInformation( "Nguyen Tran Huu",
                  "Duc", "Sango", "addd",
                 "Nani", "San Diego", "New York", "123457",
                 "United States", "999231890", "650901");
@@ -94,6 +104,21 @@ public class TC06_Test {
         String orderNumber = checkoutPage.getOrderNumber();
         System.out.println(orderNumber);
         Thread.sleep(2000);
+         // Take screen shot of the result
+        File screenshotFile = ((TakesScreenshot) driver).getScreenshotAs(OutputType.FILE);
+
+        // Define the path where you want to save the screenshot
+        String screenshotPath = "D:/study FPT/Fall2023/SWT301/Assignment/Selenium/selenium-webdriver-java-master/src/test/java/images/TC06.png";
+
+        try {
+            // Copy the screenshot file to the desired location
+            FileUtils.copyFile(screenshotFile, new File(screenshotPath));
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+        Thread.sleep(2000);
+        // Close the browser
+        driver.quit();
         driver.quit();
     }
 }

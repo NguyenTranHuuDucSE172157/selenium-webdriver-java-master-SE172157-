@@ -1,4 +1,4 @@
-package test;
+package test.BT_SWT;
 
 import model.pages.RegisterPage;
 
@@ -20,9 +20,9 @@ public class TC05 {
     @Test
     public void createAccountAndShareWishlist() throws InterruptedException {
         // Create a WebDriver instance
-        String firstName = "Huu";
+        String firstName = "Nguyen Tran Huu";
         String lastname = "Duc";
-        String email_address = "huuduc3030@example.com";
+        String email_address = "huuduc303@example.com";
         String password = "123456";
         String confirmPassWord = "123456";
         WebDriver driver = driverFactory.getChromeDriver();
