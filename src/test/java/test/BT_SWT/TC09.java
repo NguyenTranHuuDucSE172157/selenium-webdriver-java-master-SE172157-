@@ -19,15 +19,14 @@ public class TC09 {
         check.Mobile();
         check.Select();
         // Step 3:  Enter Coupon Code
-        check.getTotal();
+        String totalBeforeDiscount = check.getTotal();
         check.Input("GURU50");
         Thread.sleep(2000);
         
         // Step 4:  Verify the discount generated
-        check.getTotal2();
-        Thread.sleep(2000);
-        String totalBeforeDiscount = check.getTotal();
         String totalAfterDiscount = check.getTotal2();
+        Thread.sleep(2000);
+       
         check.compare(totalBeforeDiscount, totalAfterDiscount);
         Thread.sleep(2000);
         driver.quit();
